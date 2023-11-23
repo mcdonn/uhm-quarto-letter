@@ -94,20 +94,20 @@ $for(polyglossia-otherlangs)$
 $endfor$
 \fi
 $endif$
-% $if(listings)$
-% \usepackage{listings}
-% $endif$
-% $if(lhs)$
-% \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
-% $endif$
-% $if(highlighting-macros)$
-% $highlighting-macros$
-% $endif$
-% $if(tables)$
-% \usepackage{longtable,booktabs}
-% % Fix footnotes in tables (requires footnote package)
-% \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
-% $endif$
+$if(listings)$
+\usepackage{listings}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(tables)$
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+$endif$
 \usepackage{graphicx}
 $if(graphics)$
 \usepackage{grffile}
