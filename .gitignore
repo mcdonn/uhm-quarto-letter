@@ -2,4 +2,4 @@
 template_files/
 template.tex
 .Rproj.user
-.code-workspace
+*.code-workspace
