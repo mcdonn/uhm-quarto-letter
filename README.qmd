@@ -10,13 +10,12 @@ format: gfm
 library(tidyverse)
 library(quarto)
 library(magick)
+library(pdftools)
 
 # Render template
 fs::file_copy("_extensions/letter/sigfile.png", "sigfile.png", overwrite = TRUE)
-system("sed -i 's/^#fromsignature/fromsignature/' template.qmd")
 quarto_render(input = "template.qmd")
-system("sed -i 's/^fromsignature/#fromsignature/' template.qmd")
-fs::file_delete(c("AACSB.png","AMBA.png","EQUIS.png","MBSportrait.jpg","monash2.png","sigfile.png"))
+fs::file_delete(c("manoa.jpg","sigfile.png"))
 # Convert rendered PDF to PNG
 image_read_pdf("template.pdf", pages = 1) |>
   image_montage(geometry = "x1000+25+35", tile = 1, bg = "grey92", shadow = TRUE) |>
@@ -26,25 +25,23 @@ image_read_pdf("template.pdf", pages = 1) |>
 fs::file_move("template.pdf", "examples/template.pdf")
 ```
 
-# Monash Letter Format Template
+# University of Hawai‘i at Mānoa Letter Format Template
 
-This is a Quarto template that assists you in creating a letter on Monash University letterhead
+This Quarto template is a University of Hawai‘i at Mānoa letterhead for members of the Department of Linguistics in the the College of Arts, Languages & Letters. It can fairly easily be adapted. This template was created by cloning and adapting the [Monash Letter Format Template](https://github.com/numbats/monash-quarto-letter).
 
 ## Creating a new letter
 
-You can use this as a template to create a letter.
-To do this, use the following command:
+To create a letter, run the following command:
 
 ```bash
-quarto use template numbats/monash-quarto-letter
+quarto use template mcdonn/uhm-quarto-letter
 ```
 
-This will install the extension and create an example qmd file that you can use as a starting place for your letter.
+This command installs the extension and creates an example `.qmd` file to use a template for the letter.
 
 ## Installation for existing document
 
-You may also use this format with an existing Quarto project or document.
-From the quarto project or document directory, run the following command to install this format:
+This template can also be employed with an existing Quarto project or document. From the Quarto project or document directory, run the following command:
 
 ```bash
 quarto install extension numbats/monash-quarto-letter

@@ -2,16 +2,16 @@
 fromname: Pierre Curie
 fromqualifications: Nobel Prize, PhD
 fromtitle: Professor
-fromWWW: curie.com
-fromemail: Pierre.Curie@monash.edu
-fromphone: +61 3 9905 5555
-#fromsignature: sigfile.png
+fromemail: Pierre.Curie@hawaii.edu
+fromphone: +1(808)956-8602
+fromsignature: sigfile.png
+seal: manoa.jpg
 toname: Helen of Troy
 toaddress:
   - University of Greece
   - Athens
 opening: "Dear Helen"
-closing: "Best wishes"
+closing: "Sincerely"
 spacing: 1.4
 ps: |
   PS: Lorem ipsum dolor sit amet, *consectetur* adipiscing elit.

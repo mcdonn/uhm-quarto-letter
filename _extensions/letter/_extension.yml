@@ -1,14 +1,11 @@
-title: Monash Letter Format Template
-author: Rob J Hyndman
+title: University of Hawaii at Manoa Letter Format Template
+author: Bradley McDonnell
 version: 0.1.0
 contributes:
   formats:
     pdf:
-      template: monashletter.tex
+      template: uhmletter.tex
       pdf-engine: pdflatex
       format-resources:
-        - monash2.png
-        - MBSportrait.jpg
-        - EQUIS.png
-        - AMBA.png
-        - AACSB.png
+        - manoa.jpg
+        - sigfile.png

@@ -1,11 +1,9 @@
-\documentclass[$if(fontsize)$$fontsize$$else$11pt$endif$,a4paper,$for(classoption)$$classoption$$sep$,$endfor$]{letter}
+\documentclass[$if(fontsize)$$fontsize$$else$11pt$endif$,letterpaper,$for(classoption)$$classoption$$sep$,$endfor$]{letter}
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
-\usepackage{bera}
-\usepackage[charter,expert]{mathdesign}
-\usepackage[lf,t]{FiraSans}
-\usepackage[scale=0.9]{sourcecodepro}
+\usepackage{lmodern}% Latin Modern typeface (font)
+\usepackage[T1]{fontenc}% T1 font encoding for high quality font output
 $endif$
 $if(linestretch)$
 \usepackage{setspace}
@@ -25,7 +23,7 @@ $if(mathspec)$
   \ifxetex
     \usepackage{mathspec}
   \else
-    \usepackage{unicode-math}
+  \usepackage{unicode-math}
   \fi
 $else$
   \usepackage{unicode-math}
@@ -62,6 +60,7 @@ $if(CJKmainfont)$
     \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
 $endif$
 \fi
+
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
@@ -79,7 +78,7 @@ $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $else$
 \usepackage{geometry}
-\geometry{a4paper, top=2cm, bottom=2cm, left=2cm, right=2cm}
+\geometry{letterpaper, top=0.75in, bottom=1in, left=1in, right=1in}
 $endif$
 $if(lang)$
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -95,20 +94,20 @@ $for(polyglossia-otherlangs)$
 $endfor$
 \fi
 $endif$
-$if(listings)$
-\usepackage{listings}
-$endif$
-$if(lhs)$
-\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
-$endif$
-$if(highlighting-macros)$
-$highlighting-macros$
-$endif$
-$if(tables)$
-\usepackage{longtable,booktabs}
-% Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
-$endif$
+% $if(listings)$
+% \usepackage{listings}
+% $endif$
+% $if(lhs)$
+% \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+% $endif$
+% $if(highlighting-macros)$
+% $highlighting-macros$
+% $endif$
+% $if(tables)$
+% \usepackage{longtable,booktabs}
+% % Fix footnotes in tables (requires footnote package)
+% \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+% $endif$
 \usepackage{graphicx}
 $if(graphics)$
 \usepackage{grffile}
@@ -173,46 +172,51 @@ $if(dir)$
 \fi
 $endif$
 
-\usepackage{color,hyperref,url,fontawesome}
+\usepackage{color,hyperref,url} % fontawesome removed because it causes issues with xelatex
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage[absolute,overlay]{textpos}
 \setlength{\TPHorizModule}{1cm}
 \setlength{\TPVertModule}{1cm}
 
 \makeatletter
-\def\ps@monash{%
-\begin{textblock}{4}(2,1)
-\includegraphics[height=1.5cm]{monash2}
+\def\ps@manoa{%
+\begin{textblock}{6}(2,0.75)
+\includegraphics[height=1in]{$seal$}
 \end{textblock}%
-\begin{textblock}{4}(17,1)
-\includegraphics[height=1.5cm]{MBSportrait}
+\begin{textblock}{8}(12.85,1.5)
+  {\color[gray]{0.4}
+  Department of Linguistics\\
+  College of Arts, Languages \& Letters}
 \end{textblock}%
-\begin{textblock}{10}(1.2,26.4)
-{\fontsize{9}{8}\selectfont\sffamily\color[gray]{0.4}%
-\begin{tabular}{@{}l@{}}
-\textbf{$fromname$}, $fromqualifications$\\
-$fromtitle$\\
-Department of Econometrics \& Business Statistics\\
-Monash University, Victoria 3800, Australia.\\[0.15cm]
-\faicon{envelope} $fromemail$\quad\faicon{phone} $fromphone$\quad
-\faicon{home} $fromWWW$\\[0.1cm]
-ABN: 12 377 614 012\quad CRICOS Provider Number: 00008C
+\begin{textblock}{12}(7.1,26)\hfill
+{\fontsize{9}{8}\selectfont\color[gray]{0.4}%
+\begin{tabular}{@{}r@{}}
+  1890 East-West Road, Moore Hall 569, Honolulu, Hawai‘i 96822\\
+  Telephone: (808) 956-8602 Fax: (808) 956-9166\\
+  An Equal Opportunity/Affirmative Action Institution
 \end{tabular}}
-\end{textblock}%
-\begin{textblock}{7}(12.7,28.2)\hfill
-\includegraphics[height=0.6cm]{AACSB}~~~
-\includegraphics[height=0.6cm]{EQUIS}~~~
-\includegraphics[height=0.6cm]{AMBA}
 \end{textblock}
 \def\thepage{}}
 
 \@ifundefined{opening}{}{%
-\renewcommand*{\opening}[1]{\thispagestyle{monash}%
+\renewcommand*{\opening}[1]{\thispagestyle{manoa}%
    {\@date\par}%
-  \vspace{2\parskip}%
-  {\raggedright \toname \\ \toaddress \par}%
-  \vspace{2\parskip}%
-  #1\par\nobreak}}
+   $if(toname)$
+   \vspace{2\parskip}%
+   {\raggedright \toname \\[1pt]} 
+    $if(toaddress)$
+    {\raggedright \toaddress \par}%
+    $endif$
+  $else$
+    $if(toaddress)$
+    \setstretch{1.2}
+    \vspace{2\parskip}%
+    {\raggedright \toaddress \par}%
+    $endif$ 
+  $endif$
+   \vspace{2\parskip}%
+  #1\par\nobreak
+  }}
 \makeatother
 
 \def\section#1{\vspace{0.3cm}\par{\textsf{\bfseries\Large #1}}\vspace*{0.02cm}\par}
@@ -238,25 +242,36 @@ $endfor$
 $if(date)$
 \date{$date$}
 $else$
-\date{\Date~\Month~\Year}
+\date{\Month~\Date,~\Year}
 $endif$
 
 \begin{document}
 $for(include-before)$
 $include-before$
 $endfor$
-\begin{letter}{$toname$\\$for(toaddress)$$toaddress$$sep$\\$endfor$}
+\begin{letter}{
+  $if(toname)$
+  $toname$\\
+  $else$
+  $endif$
+  $if(toaddress)$
+  $for(toaddress)$$toaddress$$sep$\\$endfor$
+  $else$
+  $endif$
+  }
 \setstretch{1}
-\vspace*{1cm}\enlargethispage*{-2cm}
+\vspace*{1cm}\enlargethispage*{0cm}
 \opening{$opening$}
 \setstretch{$spacing$}
 $body$
-\closing{$closing$\\[0.2cm]\hspace*{0.5cm}
+\closing{$closing$,\\
 $if(fromsignature)$
 \includegraphics[height=1.5cm]{$fromsignature$}
 $endif$
+\signature{\vspace*{-3\baselineskip}\setstretch{1.1}$fromname$, $fromqualifications$\\$fromtitle$\\$fromemail$}
 }
 $if(ps)$
+\vspace*{\baselineskip}
 \ps{$ps$}
 $endif$
 $for(include-after)$
@@ -264,6 +279,4 @@ $include-after$
 
 $endfor$
 \end{letter}
-
-
 \end{document}
