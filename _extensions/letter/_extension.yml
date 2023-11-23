@@ -7,5 +7,5 @@ contributes:
       template: uhmletter.tex
       pdf-engine: pdflatex
       format-resources:
-        - manoa.jpg
+        - left.jpg
         - sigfile.png

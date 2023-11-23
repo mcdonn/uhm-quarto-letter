@@ -27,7 +27,7 @@ document. From the Quarto project or document directory, run the
 following command:
 
 ``` bash
-quarto install extension mcdonn/uhm-quarto-letter
+quarto install extension numbats/monash-quarto-letter
 ```
 
 ## Example

@@ -5,7 +5,7 @@ fromtitle: Professor
 fromemail: Pierre.Curie@hawaii.edu
 fromphone: +1(808)956-8602
 fromsignature: sigfile.png
-seal: manoa.jpg
+seal: left.jpg
 toname: Helen of Troy
 toaddress:
   - University of Greece

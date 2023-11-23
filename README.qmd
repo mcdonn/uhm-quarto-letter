@@ -15,7 +15,7 @@ library(pdftools)
 # Render template
 fs::file_copy("_extensions/letter/sigfile.png", "sigfile.png", overwrite = TRUE)
 quarto_render(input = "template.qmd")
-fs::file_delete(c("manoa.jpg","sigfile.png"))
+fs::file_delete(c("left.jpg","sigfile.png"))
 # Convert rendered PDF to PNG
 image_read_pdf("template.pdf", pages = 1) |>
   image_montage(geometry = "x1000+25+35", tile = 1, bg = "grey92", shadow = TRUE) |>
